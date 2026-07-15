@@ -1,0 +1,6 @@
+{
+  "maximum_deflection_ratio": "L/360",
+  "allowable_bending_stress_ksi": 50,
+  "allowable_shear_stress_ksi": 30,
+  "material": "A992 steel"
+}

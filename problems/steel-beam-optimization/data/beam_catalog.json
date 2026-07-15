@@ -1,0 +1,37 @@
+[
+  {
+    "section": "W12x26",
+    "weight_lb_ft": 26,
+    "area_in2": 7.65,
+    "moment_of_inertia_in4": 204,
+    "section_modulus_in3": 34.0
+  },
+  {
+    "section": "W14x30",
+    "weight_lb_ft": 30,
+    "area_in2": 8.83,
+    "moment_of_inertia_in4": 291,
+    "section_modulus_in3": 41.7
+  },
+  {
+    "section": "W16x31",
+    "weight_lb_ft": 31,
+    "area_in2": 9.13,
+    "moment_of_inertia_in4": 375,
+    "section_modulus_in3": 47.9
+  },
+  {
+    "section": "W18x35",
+    "weight_lb_ft": 35,
+    "area_in2": 10.3,
+    "moment_of_inertia_in4": 510,
+    "section_modulus_in3": 57.3
+  },
+  {
+    "section": "W21x44",
+    "weight_lb_ft": 44,
+    "area_in2": 13.0,
+    "moment_of_inertia_in4": 843,
+    "section_modulus_in3": 80.3
+  }
+]
