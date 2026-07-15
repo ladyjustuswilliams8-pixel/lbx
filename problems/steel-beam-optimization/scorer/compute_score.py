@@ -12,16 +12,8 @@ def compute_score(workspace: Path, trajectory, private: Path):
             "error": "Missing design.json"
         }
 
-    try:
-        with open(design_file) as f:
-            design = json.load(f)
-
-    except Exception:
-        return {
-            "score": 0.0,
-            "error": "Invalid JSON"
-        }
-
+    with open(design_file) as f:
+        design = json.load(f)
 
     required = [
         "beam_section",
@@ -38,58 +30,107 @@ def compute_score(workspace: Path, trajectory, private: Path):
             }
 
 
-    beam_scores = {
-        "W12x26": {
-            "weight": 26,
-            "performance": 0.55
-        },
-        "W14x30": {
-            "weight": 30,
-            "performance": 0.70
-        },
-        "W16x31": {
-            "weight": 31,
-            "performance": 0.82
-        },
-        "W18x35": {
-            "weight": 35,
-            "performance": 0.92
-        },
-        "W21x44": {
-            "weight": 44,
-            "performance": 1.00
-        }
-    }
+    # Public data
+    data_dir = Path("problems/steel-beam-optimization/data")
+
+    with open(data_dir / "design_requirements.json") as f:
+        requirements = json.load(f)
+
+    with open(data_dir / "loading_conditions.json") as f:
+        loading = json.load(f)
+
+    with open(data_dir / "beam_catalog.json") as f:
+        beams = json.load(f)
 
 
-    section = design["beam_section"]
+    selected = None
+
+    for beam in beams:
+        if beam["section"] == design["beam_section"]:
+            selected = beam
+            break
 
 
-    if section not in beam_scores:
+    if selected is None:
         return {
             "score": 0.0,
             "error": "Unknown beam section"
         }
 
 
-    performance = beam_scores[section]["performance"]
+    span_in = loading["span_ft"] * 12
 
-    weight = beam_scores[section]["weight"]
+    uniform_load = (
+        (loading["dead_load_plf"] + loading["live_load_plf"])
+        * loading["load_factor"]
+    ) / 12
 
 
-    efficiency = performance / weight * 50
+    E = 29000000
 
 
-    score = min(
-        1.0,
-        (performance * 0.7) + (efficiency * 0.3)
+    moment = uniform_load * span_in**2 / 8
+
+    bending = (
+        moment / 1000
+    ) / selected["section_modulus_in3"]
+
+
+    shear_force = uniform_load * span_in / 2
+
+    shear = (
+        shear_force / 1000
+    ) / selected["area_in2"]
+
+
+    deflection = (
+        5 * uniform_load * span_in**4
+        /
+        (384 * E * selected["moment_of_inertia_in4"])
     )
+
+
+    allowable_deflection = span_in / 360
+
+
+    bending_ok = bending <= requirements["allowable_bending_stress_ksi"]
+    shear_ok = shear <= requirements["allowable_shear_stress_ksi"]
+    deflection_ok = deflection <= allowable_deflection
+
+
+    if not (bending_ok and shear_ok and deflection_ok):
+        return {
+            "score": 0.0,
+            "subscores": {
+                "bending_ok": bending_ok,
+                "shear_ok": shear_ok,
+                "deflection_ok": deflection_ok
+            }
+        }
+
+
+    # Reward lighter valid designs
+    weights = [b["weight_lb_ft"] for b in beams]
+
+    min_weight = min(weights)
+    max_weight = max(weights)
+
+    efficiency = (
+        max_weight - selected["weight_lb_ft"]
+    ) / (
+        max_weight - min_weight
+    )
+
+
+    score = 0.7 + (0.3 * efficiency)
 
 
     return {
         "score": round(score, 4),
         "subscores": {
-            "structural_performance": performance,
+            "bending_stress": round(bending, 4),
+            "shear_stress": round(shear, 4),
+            "deflection": round(deflection, 4),
             "weight_efficiency": round(efficiency, 4)
         }
     }
