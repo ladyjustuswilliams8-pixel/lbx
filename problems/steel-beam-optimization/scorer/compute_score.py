@@ -113,17 +113,49 @@ def compute_score(workspace: Path, trajectory, private: Path):
         }
 
 
-    weights = [b["weight_lb_ft"] for b in beams]
+    valid_weights = []
 
-    min_weight = min(weights)
-    max_weight = max(weights)
+    for beam in beams:
 
-
-    efficiency = (
-        max_weight - selected["weight_lb_ft"]
-    ) / (
-        max_weight - min_weight
+        beam_deflection = (
+          5 * uniform_load * span_in**4
+          /
+          (384 * E * beam["moment_of_inertia_in4"])
     )
+
+    beam_bending = (
+        moment / 1000
+    ) / beam["section_modulus_in3"]
+
+    beam_shear = (
+        shear_force / 1000
+    ) / beam["area_in2"]
+
+    if (
+        beam_bending <= requirements["allowable_bending_stress_ksi"]
+        and
+        beam_shear <= requirements["allowable_shear_stress_ksi"]
+        and
+        beam_deflection <= allowable_deflection
+    ):
+        valid_weights.append(beam["weight_lb_ft"])
+
+
+    min_weight = min(valid_weights)
+
+    max_weight = max(valid_weights)
+
+
+    if max_weight == min_weight:
+
+        efficiency = 1.0
+
+    else:
+        efficiency = (
+            max_weight - selected["weight_lb_ft"]
+        ) / (
+            max_weight - min_weight
+        )
 
     efficiency = max(0.0, min(1.0, efficiency))
     efficiency = round(efficiency, 4)

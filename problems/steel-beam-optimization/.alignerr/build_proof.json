@@ -1,11 +1,11 @@
 {
   "alignerr_cli_version": "0.1.0",
   "base_image_ref": "lbx-tasks-base:runtime-ml-core-py313-local",
-  "built_at": "2026-07-15T05:34:37.732987+00:00",
-  "duration_seconds": 0.8305361929999435,
+  "built_at": "2026-07-16T15:01:53.617878+00:00",
+  "duration_seconds": 0.8608075289957924,
   "ground_truth_result": {
-    "details_path": "/home/newme/lbx-rl-tasks/.harness-runs/steel-beam-optimization-problem-dir-1784093676/verifier/reward-details.json",
-    "graded_at": "2026-07-15T05:34:41.828796+00:00",
+    "details_path": "/home/newme/lbx-rl-tasks/.harness-runs/test/steel-beam-optimization-problem-dir-1784214108/verifier/reward-details.json",
+    "graded_at": "2026-07-16T15:01:58.836999+00:00",
     "metadata": {
       "headline_score": 1.0,
       "pre_grade_cleanup": {
@@ -18,17 +18,45 @@
       "rubric_breakdown": [
         {
           "actual": null,
-          "criterion": "structural_performance",
-          "criterion_id": "structural_performance",
-          "description": "structural_performance",
+          "criterion": "bending_stress",
+          "criterion_id": "bending_stress",
+          "description": "bending_stress",
           "expected": null,
           "grading_type": "unknown",
-          "id": "structural_performance",
-          "label": "structural_performance",
+          "id": "bending_stress",
+          "label": "bending_stress",
           "passed": true,
           "reasoning": "",
-          "score": 1.0,
-          "weight": 0.5
+          "score": 18.7891,
+          "weight": 0.25
+        },
+        {
+          "actual": null,
+          "criterion": "shear_stress",
+          "criterion_id": "shear_stress",
+          "description": "shear_stress",
+          "expected": null,
+          "grading_type": "unknown",
+          "id": "shear_stress",
+          "label": "shear_stress",
+          "passed": true,
+          "reasoning": "",
+          "score": 1.3143,
+          "weight": 0.25
+        },
+        {
+          "actual": null,
+          "criterion": "deflection",
+          "criterion_id": "deflection",
+          "description": "deflection",
+          "expected": null,
+          "grading_type": "unknown",
+          "id": "deflection",
+          "label": "deflection",
+          "passed": true,
+          "reasoning": "",
+          "score": 0.7759,
+          "weight": 0.25
         },
         {
           "actual": null,
@@ -41,13 +69,15 @@
           "label": "weight_efficiency",
           "passed": true,
           "reasoning": "",
-          "score": 1.1364,
-          "weight": 0.5
+          "score": 1.0,
+          "weight": 0.25
         }
       ],
       "rubric_weights": {
-        "structural_performance": 0.5,
-        "weight_efficiency": 0.5
+        "bending_stress": 0.25,
+        "deflection": 0.25,
+        "shear_stress": 0.25,
+        "weight_efficiency": 0.25
       },
       "scoring_mode": "weighted",
       "serialized_grade": {
@@ -56,16 +86,40 @@
         "scoring_mode": "weighted",
         "structured_subscores": [
           {
-            "criterion_id": "structural_performance",
-            "description": "structural_performance",
-            "grading_criteria": "structural_performance",
-            "id": "structural_performance",
-            "label": "structural_performance",
+            "criterion_id": "bending_stress",
+            "description": "bending_stress",
+            "grading_criteria": "bending_stress",
+            "id": "bending_stress",
+            "label": "bending_stress",
             "max_score": 1.0,
-            "name": "structural_performance",
+            "name": "bending_stress",
             "reasoning": "",
-            "score": 1.0,
-            "weight": 0.5
+            "score": 18.7891,
+            "weight": 0.25
+          },
+          {
+            "criterion_id": "shear_stress",
+            "description": "shear_stress",
+            "grading_criteria": "shear_stress",
+            "id": "shear_stress",
+            "label": "shear_stress",
+            "max_score": 1.0,
+            "name": "shear_stress",
+            "reasoning": "",
+            "score": 1.3143,
+            "weight": 0.25
+          },
+          {
+            "criterion_id": "deflection",
+            "description": "deflection",
+            "grading_criteria": "deflection",
+            "id": "deflection",
+            "label": "deflection",
+            "max_score": 1.0,
+            "name": "deflection",
+            "reasoning": "",
+            "score": 0.7759,
+            "weight": 0.25
           },
           {
             "criterion_id": "weight_efficiency",
@@ -76,38 +130,66 @@
             "max_score": 1.0,
             "name": "weight_efficiency",
             "reasoning": "",
-            "score": 1.1364,
-            "weight": 0.5
+            "score": 1.0,
+            "weight": 0.25
           }
         ],
         "subscores": {
-          "structural_performance": 1.0,
-          "weight_efficiency": 1.1364
+          "bending_stress": 18.7891,
+          "deflection": 0.7759,
+          "shear_stress": 1.3143,
+          "weight_efficiency": 1.0
         },
         "weights": {
-          "structural_performance": 0.5,
-          "weight_efficiency": 0.5
+          "bending_stress": 0.25,
+          "deflection": 0.25,
+          "shear_stress": 0.25,
+          "weight_efficiency": 0.25
         }
       },
       "weighted_subscore_total": 1.0,
       "weighted_total": 1.0
     },
-    "reward_path": "/home/newme/lbx-rl-tasks/.harness-runs/steel-beam-optimization-problem-dir-1784093676/verifier/reward.json",
-    "run_dir": "/home/newme/lbx-rl-tasks/.harness-runs/steel-beam-optimization-problem-dir-1784093676",
+    "reward_path": "/home/newme/lbx-rl-tasks/.harness-runs/test/steel-beam-optimization-problem-dir-1784214108/verifier/reward.json",
+    "run_dir": "/home/newme/lbx-rl-tasks/.harness-runs/test/steel-beam-optimization-problem-dir-1784214108",
     "runtime": "solution",
     "score": 1.0,
     "structured_subscores": [
       {
-        "criterion_id": "structural_performance",
-        "description": "structural_performance",
-        "grading_criteria": "structural_performance",
-        "id": "structural_performance",
-        "label": "structural_performance",
+        "criterion_id": "bending_stress",
+        "description": "bending_stress",
+        "grading_criteria": "bending_stress",
+        "id": "bending_stress",
+        "label": "bending_stress",
         "max_score": 1.0,
-        "name": "structural_performance",
+        "name": "bending_stress",
         "reasoning": "",
-        "score": 1.0,
-        "weight": 0.5
+        "score": 18.7891,
+        "weight": 0.25
+      },
+      {
+        "criterion_id": "shear_stress",
+        "description": "shear_stress",
+        "grading_criteria": "shear_stress",
+        "id": "shear_stress",
+        "label": "shear_stress",
+        "max_score": 1.0,
+        "name": "shear_stress",
+        "reasoning": "",
+        "score": 1.3143,
+        "weight": 0.25
+      },
+      {
+        "criterion_id": "deflection",
+        "description": "deflection",
+        "grading_criteria": "deflection",
+        "id": "deflection",
+        "label": "deflection",
+        "max_score": 1.0,
+        "name": "deflection",
+        "reasoning": "",
+        "score": 0.7759,
+        "weight": 0.25
       },
       {
         "criterion_id": "weight_efficiency",
@@ -118,22 +200,26 @@
         "max_score": 1.0,
         "name": "weight_efficiency",
         "reasoning": "",
-        "score": 1.1364,
-        "weight": 0.5
+        "score": 1.0,
+        "weight": 0.25
       }
     ],
     "subscores": {
-      "structural_performance": 1.0,
-      "weight_efficiency": 1.1364
+      "bending_stress": 18.7891,
+      "deflection": 0.7759,
+      "shear_stress": 1.3143,
+      "weight_efficiency": 1.0
     },
     "trivial_baseline_score": 0.0,
     "weights": {
-      "structural_performance": 0.5,
-      "weight_efficiency": 0.5
+      "bending_stress": 0.25,
+      "deflection": 0.25,
+      "shear_stress": 0.25,
+      "weight_efficiency": 0.25
     }
   },
-  "image_digest": "sha256:2557ee37cc8c152a42cd323d847e86633525c5ecc27b6ff80ffd538e37518f25",
+  "image_digest": "sha256:89b3f1da67a7faa44204b1bab362ad5b7001221b54fbd0e5fbd9a3f4407cd541",
   "platform": "linux/amd64",
   "schema_version": "1.0",
-  "task_dir_sha256": "e24c6371def1e3c9145c7e6dd55190b0b0208c7704ff3279c13e6dd4e3a6bef4"
+  "task_dir_sha256": "a2d6b9c90965a8139948b7cc3b8020d1c9218827f545da38e314ff7a4e95d4e8"
 }
