@@ -25,3 +25,15 @@ Review all files in `/data` before creating your design.
 ## Required Output
 
 You must create exactly one file:
+
+/tmp/output/design.json
+
+The file must contain a JSON object with the following fields:
+
+```json
+{
+  "beam_section": "selected beam designation",
+  "material": "selected material",
+  "span_ft": 0,
+  "design_notes": "brief explanation of why this beam was selected"
+}
