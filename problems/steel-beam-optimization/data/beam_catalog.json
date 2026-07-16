@@ -1,0 +1,107 @@
+[
+  {
+    "section": "W10x22",
+    "weight_lb_ft": 22,
+    "area_in2": 6.49,
+    "moment_of_inertia_in4": 118,
+    "section_modulus_in3": 23.5
+  },
+  {
+    "section": "W12x26",
+    "weight_lb_ft": 26,
+    "area_in2": 7.65,
+    "moment_of_inertia_in4": 204,
+    "section_modulus_in3": 34.0
+  },
+  {
+    "section": "W12x30",
+    "weight_lb_ft": 30,
+    "area_in2": 8.85,
+    "moment_of_inertia_in4": 285,
+    "section_modulus_in3": 47.0
+  },
+  {
+    "section": "W14x30",
+    "weight_lb_ft": 30,
+    "area_in2": 8.83,
+    "moment_of_inertia_in4": 291,
+    "section_modulus_in3": 41.7
+  },
+  {
+    "section": "W14x38",
+    "weight_lb_ft": 38,
+    "area_in2": 11.2,
+    "moment_of_inertia_in4": 428,
+    "section_modulus_in3": 61.0
+  },
+  {
+    "section": "W16x31",
+    "weight_lb_ft": 31,
+    "area_in2": 9.13,
+    "moment_of_inertia_in4": 375,
+    "section_modulus_in3": 47.9
+  },
+  {
+    "section": "W16x40",
+    "weight_lb_ft": 40,
+    "area_in2": 11.8,
+    "moment_of_inertia_in4": 518,
+    "section_modulus_in3": 65.0
+  },
+  {
+    "section": "W18x35",
+    "weight_lb_ft": 35,
+    "area_in2": 10.3,
+    "moment_of_inertia_in4": 510,
+    "section_modulus_in3": 57.3
+  },
+  {
+    "section": "W18x46",
+    "weight_lb_ft": 46,
+    "area_in2": 13.5,
+    "moment_of_inertia_in4": 712,
+    "section_modulus_in3": 78.0
+  },
+  {
+    "section": "W21x44",
+    "weight_lb_ft": 44,
+    "area_in2": 13.0,
+    "moment_of_inertia_in4": 843,
+    "section_modulus_in3": 80.3
+  },
+  {
+    "section": "W21x50",
+    "weight_lb_ft": 50,
+    "area_in2": 14.7,
+    "moment_of_inertia_in4": 984,
+    "section_modulus_in3": 93.0
+  },
+  {
+    "section": "W24x55",
+    "weight_lb_ft": 55,
+    "area_in2": 16.2,
+    "moment_of_inertia_in4": 1350,
+    "section_modulus_in3": 112.0
+  },
+  {
+    "section": "W24x68",
+    "weight_lb_ft": 68,
+    "area_in2": 20.0,
+    "moment_of_inertia_in4": 1700,
+    "section_modulus_in3": 142.0
+  },
+  {
+    "section": "W27x84",
+    "weight_lb_ft": 84,
+    "area_in2": 24.7,
+    "moment_of_inertia_in4": 2600,
+    "section_modulus_in3": 193.0
+  },
+  {
+    "section": "W30x99",
+    "weight_lb_ft": 99,
+    "area_in2": 29.1,
+    "moment_of_inertia_in4": 3500,
+    "section_modulus_in3": 233.0
+  }
+]

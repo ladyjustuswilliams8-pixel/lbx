@@ -1,0 +1,7 @@
+{
+  "benchmark": "taiga_task",
+  "problem_data": {
+    "instance_id": "steel-beam-optimization",
+    "description": "Optimize a steel beam design across multiple load cases while minimizing material weight."
+  }
+}

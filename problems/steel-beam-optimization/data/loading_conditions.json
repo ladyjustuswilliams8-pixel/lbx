@@ -1,0 +1,6 @@
+{
+  "span_ft": 25,
+  "dead_load_plf": 300,
+  "live_load_plf": 500,
+  "load_factor": 1.2
+}
