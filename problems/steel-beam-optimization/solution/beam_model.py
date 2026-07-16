@@ -4,8 +4,9 @@ import openseespy.opensees as ops
 
 
 DATA_DIR = Path("/data")
+
 if not DATA_DIR.exists():
-    DATA_DIR = Path("problems/steel-beam-optimization/data")
+    DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 
 
 with open(DATA_DIR / "design_requirements.json") as f:
@@ -118,4 +119,6 @@ Path("/tmp/output").mkdir(exist_ok=True)
 
 with open("/tmp/output/design.json", "w") as f:
     json.dump(output, f, indent=2)
-# trusted ci rerun
+
+with open("design.json", "w") as f:
+    json.dump(output, f, indent=2)

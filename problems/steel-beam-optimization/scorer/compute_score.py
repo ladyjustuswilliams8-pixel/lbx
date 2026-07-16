@@ -6,6 +6,11 @@ def compute_score(workspace: Path, trajectory, private: Path):
 
     design_file = workspace / "design.json"
 
+if not design_file.exists():
+    tmp_file = Path("/tmp/output/design.json")
+    if tmp_file.exists():
+        design_file = tmp_file
+
     if not design_file.exists():
         return {
             "score": 0.0,
@@ -31,7 +36,7 @@ def compute_score(workspace: Path, trajectory, private: Path):
 
 
     # Public data
-    data_dir = Path("problems/steel-beam-optimization/data")
+    data_dir = Path(__file__).resolve().parents[1] / "data"
 
     with open(data_dir / "design_requirements.json") as f:
         requirements = json.load(f)
@@ -122,7 +127,7 @@ def compute_score(workspace: Path, trajectory, private: Path):
     )
 
 
-    score = 0.7 + (0.3 * efficiency)
+    score = 0.4 + (0.6 * efficiency)
 
 
     return {
