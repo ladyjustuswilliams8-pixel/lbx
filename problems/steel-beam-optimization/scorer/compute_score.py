@@ -4,12 +4,12 @@ import json
 
 def compute_score(workspace: Path, trajectory, private: Path):
 
-    design_file = workspace / "design.json"
+    # Required output location from instruction.md
+    design_file = Path("/tmp/output/design.json")
 
+    # Fallback for harness environments that copy outputs into workspace
     if not design_file.exists():
-        tmp_file = Path("/tmp/output/design.json")
-        if tmp_file.exists():
-            design_file = tmp_file
+        design_file = workspace / "design.json"
 
     if not design_file.exists():
         return {
@@ -35,7 +35,6 @@ def compute_score(workspace: Path, trajectory, private: Path):
             }
 
 
-    # Public data
     data_dir = Path(__file__).resolve().parents[1] / "data"
 
     with open(data_dir / "design_requirements.json") as f:
@@ -114,11 +113,11 @@ def compute_score(workspace: Path, trajectory, private: Path):
         }
 
 
-    # Reward lighter valid designs
     weights = [b["weight_lb_ft"] for b in beams]
 
     min_weight = min(weights)
     max_weight = max(weights)
+
 
     efficiency = (
         max_weight - selected["weight_lb_ft"]
@@ -127,6 +126,8 @@ def compute_score(workspace: Path, trajectory, private: Path):
     )
 
     efficiency = max(0.0, min(1.0, efficiency))
+    efficiency = round(efficiency, 4)
+
 
     score = 0.4 + (0.6 * efficiency)
 
@@ -137,6 +138,6 @@ def compute_score(workspace: Path, trajectory, private: Path):
             "bending_stress": round(bending, 4),
             "shear_stress": round(shear, 4),
             "deflection": round(deflection, 4),
-            "weight_efficiency": round(efficiency, 4)
+            "weight_efficiency": efficiency
         }
     }
