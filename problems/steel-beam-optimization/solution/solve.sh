@@ -2,8 +2,14 @@
 
 set -e
 
-mkdir -p /tmp/output
+OUTPUT_DIR="/tmp/output"
 
-python3 "$(dirname "$0")/beam_model.py"
+mkdir -p "$OUTPUT_DIR"
 
-cp /tmp/output/design.json ./design.json
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+python3 "$SCRIPT_DIR/beam_model.py"
+
+test -f "$OUTPUT_DIR/design.json"
+
+cp "$OUTPUT_DIR/design.json" "$SCRIPT_DIR/design.json"
