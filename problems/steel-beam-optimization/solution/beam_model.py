@@ -140,4 +140,4 @@ import os
 output_path = "/tmp/design.json"
 
 with open(output_path, "w") as f:
-    json.dump(...)
+    json.dump(result, f, indent=2)
