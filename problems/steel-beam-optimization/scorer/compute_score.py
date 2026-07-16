@@ -113,14 +113,14 @@ def compute_score(workspace: Path, trajectory, private: Path):
         }
 
 
-    valid_weights = []
+valid_weights = []
 
-    for beam in beams:
+for beam in beams:
 
-        beam_deflection = (
-          5 * uniform_load * span_in**4
-          /
-          (384 * E * beam["moment_of_inertia_in4"])
+    beam_deflection = (
+        5 * uniform_load * span_in**4
+        /
+        (384 * E * beam["moment_of_inertia_in4"])
     )
 
     beam_bending = (
