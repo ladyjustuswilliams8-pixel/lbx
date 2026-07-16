@@ -167,9 +167,9 @@ for beam in beams:
     return {
         "score": round(score, 4),
         "subscores": {
-            "bending_stress": round(bending, 4),
-            "shear_stress": round(shear, 4),
-            "deflection": round(deflection, 4),
+            "bending_stress": 1.0 if bending_ok else 0.0,
+            "shear_stress": 1.0 if shear_ok else 0.0,
+            "deflection": 1.0 if deflection_ok else 0.0,
             "weight_efficiency": efficiency
-        }
+         }
     }
