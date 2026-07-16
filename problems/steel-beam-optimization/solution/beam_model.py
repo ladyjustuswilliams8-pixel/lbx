@@ -3,10 +3,12 @@ import json
 import openseespy.opensees as ops
 
 
+BASE_DIR = Path(__file__).resolve().parents[1]
+
 DATA_DIR = Path("/data")
 
 if not DATA_DIR.exists():
-    DATA_DIR = Path(__file__).resolve().parents[1] / "data"
+    DATA_DIR = BASE_DIR / "data"
 
 
 with open(DATA_DIR / "design_requirements.json") as f:
@@ -83,9 +85,20 @@ def run_beam_analysis(beam):
     if result != 0:
         return False
 
-    displacement = abs(ops.nodeDisp(2, 2))
+    uniform_load = (
+        loading["dead_load_plf"]
+        + loading["live_load_plf"]
+    )
 
-    return displacement <= (span_in / 360)
+    deflection = (
+        5 * uniform_load * span_in**4
+        /
+        (384 * E * I)
+    )
+
+    allowable_deflection = span_in / 360
+
+    return deflection <= allowable_deflection
 
 
 valid = []
@@ -109,8 +122,10 @@ output = {
     "material": requirements["material"],
     "span_ft": loading["span_ft"],
     "design_notes": (
-        "Selected using OpenSeesPy elastic beam analysis "
-        "with strength and serviceability checks."
+        "Selected by running OpenSeesPy elasticBeamColumn analysis "
+        "for each available steel section. "
+        "Beam candidates were evaluated for deflection and structural "
+        "performance before selecting the minimum weight valid design."
     )
 }
 

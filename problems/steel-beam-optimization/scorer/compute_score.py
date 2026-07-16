@@ -6,10 +6,10 @@ def compute_score(workspace: Path, trajectory, private: Path):
 
     design_file = workspace / "design.json"
 
-if not design_file.exists():
-    tmp_file = Path("/tmp/output/design.json")
-    if tmp_file.exists():
-        design_file = tmp_file
+    if not design_file.exists():
+        tmp_file = Path("/tmp/output/design.json")
+        if tmp_file.exists():
+            design_file = tmp_file
 
     if not design_file.exists():
         return {
@@ -126,6 +126,7 @@ if not design_file.exists():
         max_weight - min_weight
     )
 
+    efficiency = max(0.0, min(1.0, efficiency))
 
     score = 0.4 + (0.6 * efficiency)
 
