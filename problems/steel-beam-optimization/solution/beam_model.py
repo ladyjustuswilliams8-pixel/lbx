@@ -118,3 +118,4 @@ Path("/tmp/output").mkdir(exist_ok=True)
 
 with open("/tmp/output/design.json", "w") as f:
     json.dump(output, f, indent=2)
+# trusted ci rerun
